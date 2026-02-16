@@ -406,7 +406,7 @@
             font-style: italic;
         }
 
-        /* Skills with Categories */
+        /* Skills with Categories - ENHANCED WITH TOOLTIP */
         .skills-category {
             margin-bottom: 3rem;
         }
@@ -431,6 +431,13 @@
             border: 1px solid var(--border);
             text-align: center;
             transition: all 0.3s;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
         }
 
         .skill-card:hover {
@@ -442,11 +449,381 @@
         .skill-icon {
             font-size: 2rem;
             margin-bottom: 0.5rem;
+            transition: all 0.3s;
         }
 
         .skill-name {
             font-weight: 600;
             color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .skill-description {
+            position: absolute;
+            bottom: calc(100% + 15px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: normal;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            direction: rtl;
+            font-family: 'Cairo', 'Inter', sans-serif;
+        }
+
+        .skill-description::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: var(--secondary);
+        }
+
+        .skill-card:hover .skill-description {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Projects Section - Enhanced */
+        .projects {
+            padding: 120px 2rem;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        /* Education Section */
+        .education {
+            padding: 120px 2rem;
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        .education-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .education-card {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .education-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .education-info h3 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info h4 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-year {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .cert-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h4 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cert-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 120px 2rem;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            padding-left: 3rem;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+            padding-right: 3rem;
+            width: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--dark);
+            z-index: 10;
+        }
+
+        .timeline-content {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-responsibilities {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-responsibilities li {
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .timeline-responsibilities li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .experience-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .exp-stat {
+            text-align: center;
+        }
+
+        .exp-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .exp-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 2rem;
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .service-card > p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-features li {
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Achievements Section */
+        .achievements {
+            padding: 120px 2rem;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .achievement-badge {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .achievement-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
         }
 
         /* Projects Section - Enhanced */
@@ -660,6 +1037,13 @@
             font-size: 1.5rem;
             color: white;
             font-weight: 700;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .author-info h4 {
@@ -1118,6 +1502,26 @@
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: 100%;
+                padding-left: 4rem;
+                padding-right: 2rem;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .education-card {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1172,6 +1576,23 @@
                 grid-template-columns: 1fr;
             }
 
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
             .cta-container {
                 padding: 3rem 2rem;
             }
@@ -1190,6 +1611,18 @@
             .stat-number {
                 font-size: 2rem;
             }
+
+            .education-icon {
+                font-size: 2rem;
+            }
+
+            .service-icon {
+                font-size: 2rem;
+            }
+
+            .achievement-badge {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
@@ -1205,7 +1638,11 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -1307,26 +1744,32 @@
                             <div class="skill-card">
                                 <div class="skill-icon">📱</div>
                                 <div class="skill-name">Flutter</div>
+                                <div class="skill-description">هتوفر فلوس ووقت! كود واحد يشتغل على آيفون وأندرويد</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">🎯</div>
                                 <div class="skill-name">Dart</div>
+                                <div class="skill-description">لغة سريعة وقوية = التطبيق هيشتغل بسلاسة بدون تقطيع</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">🔥</div>
                                 <div class="skill-name">Firebase</div>
+                                <div class="skill-description">بيانات فورية، أمان عالي، وتخزين سحابي احترافي</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">🗄️</div>
                                 <div class="skill-name">SQLite</div>
+                                <div class="skill-description">التطبيق يشتغل بدون نت! كل البيانات محفوظة على الجهاز</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">🔄</div>
                                 <div class="skill-name">REST APIs</div>
+                                <div class="skill-description">ربط سلس مع أي سيرفر أو نظام خلفي بكل سهولة</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">📦</div>
                                 <div class="skill-name">Git</div>
+                                <div class="skill-description">كل التغييرات محفوظة ومنظمة، تقدر ترجع لأي نسخة قديمة</div>
                             </div>
                         </div>
                     </div>
@@ -1337,18 +1780,22 @@
                             <div class="skill-card">
                                 <div class="skill-icon">🔮</div>
                                 <div class="skill-name">Bloc</div>
+                                <div class="skill-description">كود قوي ومنظم للمشاريع الكبيرة، سهل الاختبار والصيانة</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">⚡</div>
                                 <div class="skill-name">Provider</div>
+                                <div class="skill-description">بسيط وفعّال، يخلي التطوير أسرع وأسهل</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">🎭</div>
                                 <div class="skill-name">GetX</div>
+                                <div class="skill-description">قوي جداً للتطبيقات المعقدة، فيه كل حاجة محتاجها</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">🌊</div>
                                 <div class="skill-name">Riverpod</div>
+                                <div class="skill-description">حديث وآمن، بيكتشف الأخطاء قبل ما تحصل</div>
                             </div>
                         </div>
                     </div>
@@ -1359,21 +1806,266 @@
                             <div class="skill-card">
                                 <div class="skill-icon">✨</div>
                                 <div class="skill-name">Clean Code</div>
+                                <div class="skill-description">الكود النضيف = صيانة أسهل وتكلفة أقل على المدى الطويل</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">🎨</div>
                                 <div class="skill-name">UI/UX Focus</div>
+                                <div class="skill-description">تصميم جميل = مستخدمين مبسوطين وتفاعل أكتر</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">⚡</div>
                                 <div class="skill-name">Performance</div>
+                                <div class="skill-description">تطبيق سريع = تجربة أفضل ومستخدمين يرجعوا تاني</div>
                             </div>
                             <div class="skill-card">
                                 <div class="skill-icon">🤝</div>
                                 <div class="skill-name">Teamwork</div>
+                                <div class="skill-description">شغل جماعي منظم = مشاريع بتتسلم في معادها</div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section - NEW -->
+    <section class="education" id="education">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="section-label">Education</p>
+                <h2 class="section-title">Academic Background</h2>
+                <p class="section-description">My educational journey in technology</p>
+            </div>
+
+            <div class="education-content">
+                <div class="education-card fade-in scale-in stagger-1">
+                    <div class="education-icon">🎓</div>
+                    <div class="education-info">
+                        <h3>Bachelor's Degree in Computer Science</h3>
+                        <h4>Delta University</h4>
+                        <p class="education-year">Graduated: 2023</p>
+                        <p class="education-description">Specialized in software development, algorithms, and mobile application design. Built strong foundation in programming principles and software engineering practices.</p>
+                    </div>
+                </div>
+
+                <div class="education-card fade-in scale-in stagger-2">
+                    <div class="education-icon">🚀</div>
+                    <div class="education-info">
+                        <h3>Digital Egypt Pioneers Initiative (DEPI)</h3>
+                        <h4>Flutter Track - Current</h4>
+                        <p class="education-year">2026 - Present</p>
+                        <p class="education-description">Intensive training program focused on advanced Flutter development, building real-world projects, and learning from industry experts.</p>
+                    </div>
+                </div>
+
+                <div class="certifications-grid">
+                    <div class="cert-card fade-in stagger-3">
+                        <div class="cert-icon">📜</div>
+                        <h4>Flutter Development</h4>
+                        <p>Advanced mobile app development</p>
+                    </div>
+                    <div class="cert-card fade-in stagger-4">
+                        <div class="cert-icon">🔥</div>
+                        <h4>Firebase Integration</h4>
+                        <p>Backend & cloud services</p>
+                    </div>
+                    <div class="cert-card fade-in stagger-5">
+                        <div class="cert-icon">🎨</div>
+                        <h4>UI/UX Design</h4>
+                        <p>User interface principles</p>
+                    </div>
+                    <div class="cert-card fade-in stagger-6">
+                        <div class="cert-icon">⚡</div>
+                        <h4>State Management</h4>
+                        <p>Bloc, Provider, GetX</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section - NEW -->
+    <section class="experience" id="experience">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="section-label">Experience</p>
+                <h2 class="section-title">Professional Journey</h2>
+                <p class="section-description">Building mobile solutions and delivering value</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item fade-in-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2026 - Present</div>
+                        <h3>Digital Egypt Pioneers Initiative (DEPI)</h3>
+                        <h4>Flutter Development Track</h4>
+                        <ul class="timeline-responsibilities">
+                            <li>Intensive training on advanced Flutter concepts and best practices</li>
+                            <li>Building real-world mobile applications with modern architectures</li>
+                            <li>Collaborating with mentors and fellow developers on challenging projects</li>
+                            <li>Learning industry-standard tools and workflows</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - Present</div>
+                        <h3>Freelance Flutter Developer</h3>
+                        <h4>Self-Employed</h4>
+                        <ul class="timeline-responsibilities">
+                            <li>Successfully delivered 15+ mobile applications across various industries</li>
+                            <li>Maintained 100% client satisfaction rate through quality work and clear communication</li>
+                            <li>Specialized in e-commerce, productivity, and social networking applications</li>
+                            <li>Managed full development lifecycle from design to deployment</li>
+                        </ul>
+                        <div class="experience-stats">
+                            <div class="exp-stat">
+                                <span class="exp-number">15+</span>
+                                <span class="exp-label">Projects</span>
+                            </div>
+                            <div class="exp-stat">
+                                <span class="exp-number">50K+</span>
+                                <span class="exp-label">Downloads</span>
+                            </div>
+                            <div class="exp-stat">
+                                <span class="exp-number">4.8★</span>
+                                <span class="exp-label">Avg Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - NEW -->
+    <section class="services" id="services">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="section-label">Services</p>
+                <h2 class="section-title">What I Can Do For You</h2>
+                <p class="section-description">Comprehensive Flutter development services tailored to your needs</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card fade-in scale-in stagger-1">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile App Development</h3>
+                    <p>Full-stack Flutter development for iOS and Android. One codebase, two platforms - saving you time and money while ensuring consistent user experience.</p>
+                    <ul class="service-features">
+                        <li>✓ Cross-platform apps</li>
+                        <li>✓ Native performance</li>
+                        <li>✓ Beautiful UI/UX</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in scale-in stagger-2">
+                    <div class="service-icon">🎨</div>
+                    <h3>UI/UX Implementation</h3>
+                    <p>Transform your designs into pixel-perfect, responsive interfaces. I bring Figma, XD, and Sketch designs to life with attention to every detail.</p>
+                    <ul class="service-features">
+                        <li>✓ Design to code</li>
+                        <li>✓ Responsive layouts</li>
+                        <li>✓ Smooth animations</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in scale-in stagger-3">
+                    <div class="service-icon">🔧</div>
+                    <h3>App Maintenance & Updates</h3>
+                    <p>Keep your app running smoothly with regular updates, bug fixes, and new features. Ongoing support to ensure your app stays competitive.</p>
+                    <ul class="service-features">
+                        <li>✓ Bug fixes</li>
+                        <li>✓ Feature additions</li>
+                        <li>✓ Performance tuning</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in scale-in stagger-4">
+                    <div class="service-icon">🔗</div>
+                    <h3>API Integration</h3>
+                    <p>Seamlessly connect your app to any backend service, third-party API, or cloud platform. RESTful APIs, GraphQL, Firebase, and more.</p>
+                    <ul class="service-features">
+                        <li>✓ REST & GraphQL</li>
+                        <li>✓ Firebase services</li>
+                        <li>✓ Payment gateways</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in scale-in stagger-5">
+                    <div class="service-icon">⚡</div>
+                    <h3>Performance Optimization</h3>
+                    <p>Speed up your app and reduce battery drain. I analyze and optimize every aspect for the smoothest user experience possible.</p>
+                    <ul class="service-features">
+                        <li>✓ Speed optimization</li>
+                        <li>✓ Memory management</li>
+                        <li>✓ Battery efficiency</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in scale-in stagger-6">
+                    <div class="service-icon">💬</div>
+                    <h3>Technical Consulting</h3>
+                    <p>Need guidance on your mobile strategy? I help you choose the right technologies, plan architecture, and make informed technical decisions.</p>
+                    <ul class="service-features">
+                        <li>✓ Architecture planning</li>
+                        <li>✓ Tech stack selection</li>
+                        <li>✓ Code reviews</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section - NEW -->
+    <section class="achievements" id="achievements">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="section-label">Achievements</p>
+                <h2 class="section-title">Milestones & Recognition</h2>
+                <p class="section-description">Key accomplishments in my Flutter development journey</p>
+            </div>
+
+            <div class="achievements-grid">
+                <div class="achievement-card fade-in scale-in stagger-1">
+                    <div class="achievement-badge">🏆</div>
+                    <h3>15+ Successful Projects</h3>
+                    <p>Delivered diverse mobile applications across e-commerce, productivity, social networking, and entertainment sectors with consistent quality.</p>
+                </div>
+
+                <div class="achievement-card fade-in scale-in stagger-2">
+                    <div class="achievement-badge">⭐</div>
+                    <h3>100% Client Satisfaction</h3>
+                    <p>Maintained perfect satisfaction rate through clear communication, quality deliverables, and going the extra mile for every client.</p>
+                </div>
+
+                <div class="achievement-card fade-in scale-in stagger-3">
+                    <div class="achievement-badge">🎓</div>
+                    <h3>Egypt Digital Pioneers</h3>
+                    <p>Selected for prestigious Flutter development fellowship among top candidates, receiving advanced training from industry experts.</p>
+                </div>
+
+                <div class="achievement-card fade-in scale-in stagger-4">
+                    <div class="achievement-badge">📱</div>
+                    <h3>50K+ Total Downloads</h3>
+                    <p>Apps developed have collectively reached over 50,000 downloads across iOS and Android platforms, serving thousands of active users.</p>
+                </div>
+
+                <div class="achievement-card fade-in scale-in stagger-5">
+                    <div class="achievement-badge">🌟</div>
+                    <h3>4.8 Average Rating</h3>
+                    <p>Consistently high user ratings across all published applications, reflecting quality user experience and reliable performance.</p>
+                </div>
+
+                <div class="achievement-card fade-in scale-in stagger-6">
+                    <div class="achievement-badge">🚀</div>
+                    <h3>Fast Delivery Record</h3>
+                    <p>Known for delivering projects on time or ahead of schedule without compromising quality, maintaining efficient development workflows.</p>
                 </div>
             </div>
         </div>
@@ -1393,7 +2085,7 @@
                 <div class="project-card scale-in stagger-1">
                     <div class="project-video">
                         <video controls poster="https://via.placeholder.com/800x450/1e293b/6366f1?text=E-Commerce+App">
-                            <source src="" type="video/mp4">
+                            <source src="videos/E.mp4" type="video/mp4">
                         </video>
                         <div class="project-impact-badge">Featured ⭐</div>
                     </div>
@@ -1437,7 +2129,7 @@
                 <div class="project-card scale-in stagger-2">
                     <div class="project-video">
                         <video controls poster="https://via.placeholder.com/800x450/1e293b/8b5cf6?text=Task+Manager">
-                            <source src="" type="video/mp4">
+                            <source src="videos/S.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="project-info">
@@ -1474,7 +2166,7 @@
                 <div class="project-card scale-in stagger-3">
                     <div class="project-video">
                         <video controls poster="https://via.placeholder.com/800x450/1e293b/ec4899?text=Weather+App">
-                            <source src="" type="video/mp4">
+                            <source src="videos/Q.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="project-info">
@@ -1511,7 +2203,7 @@
                 <div class="project-card scale-in stagger-4">
                     <div class="project-video">
                         <video controls poster="https://via.placeholder.com/800x450/1e293b/10b981?text=Chat+App">
-                            <source src="" type="video/mp4">
+                            <source src="videos/R.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="project-info">
@@ -1548,7 +2240,7 @@
                 <div class="project-card scale-in stagger-5">
                     <div class="project-video">
                         <video controls poster="https://via.placeholder.com/800x450/1e293b/8b5cf6?text=Fitness+Tracker">
-                            <source src="" type="video/mp4">
+                            <source src="videos/F.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="project-info">
@@ -1586,13 +2278,12 @@
                 <div class="project-card scale-in stagger-6">
                     <div class="project-video">
                         <video controls poster="https://via.placeholder.com/800x450/1e293b/ec4899?text=Recipe+Hub">
-                            <source src="" type="video/mp4">
+                            <source src="videos/Q.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="project-info">
-                        <h3>Recipe Discovery Hub</h3>
-                        <p>Culinary inspiration app with extensive recipe database, step-by-step cooking instructions,
-                            ingredient shopping lists, and meal planning features.</p>
+                        <h3>Noble Quran Companion</h3>
+                        <p>Comprehensive Islamic application featuring high-quality Uthmani script, audio recitations by renowned Qaris, Tafsir (exegesis), and personalized daily reading plans..</p>
 
                         <div class="project-metrics">
                             <div class="metric">
@@ -1639,7 +2330,9 @@
                         expectations. His attention to detail and commitment to quality is outstanding. The app runs
                         smoothly and our users love it!"</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">M</div>
+                        <div class="author-avatar">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mohamed" alt="Mohamed Hassan">
+                        </div>
                         <div class="author-info">
                             <h4>Mohamed Hassan</h4>
                             <p>CEO, TechStart Solutions</p>
@@ -1652,7 +2345,9 @@
                         but also great at understanding business requirements and translating them into functional
                         features. Highly recommend!"</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
+                        <div class="author-avatar">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sara" alt="Sara Ahmed">
+                        </div>
                         <div class="author-info">
                             <h4>Sara Ahmed</h4>
                             <p>Product Manager, Digital Ventures</p>
@@ -1665,7 +2360,9 @@
                         His clean code practices and thorough testing ensured a stable, performant application. A true
                         professional!"</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">K</div>
+                        <div class="author-avatar">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Khaled" alt="Khaled Ibrahim">
+                        </div>
                         <div class="author-info">
                             <h4>Khaled Ibrahim</h4>
                             <p>CTO, Innovate Labs</p>
